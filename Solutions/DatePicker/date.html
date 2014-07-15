@@ -22,5 +22,17 @@
 {{myText}} - {{currentDate}}
 <hr/>
 <input type="text" ng-model="timeOfDay" time-picker />
+
+<hr/>
+
+<h2>Slider</h2>
+<div class="container" >
+  <div ng-model="$parent.minMax" data-rnc-slider-range></div>
+  <hr/>
+  <input type="text" ng-model="start"/>
+  <input type="text" ng-model="stop"/>
+  <label for="bob">Current Value:</label><input id="bob" ng-model="current"/>
+</div>
+
 </body>
 </html>
