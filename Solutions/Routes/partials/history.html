@@ -1,0 +1,6 @@
+
+Minimum temperature: <input ng-model="tempMin" type="number"/> Celsius
+
+<ul ng-repeat="value in historyData | minimum:tempMin">
+  <li>{{ value.day | uppercase }} : {{ value.temp }}</li>
+</ul>

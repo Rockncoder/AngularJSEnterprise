@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head lang="en">
+  <meta charset="utf-8">
+  <title>AngularJS Datepicker</title>
+  <link rel="stylesheet" href="../../css/jquery-ui.css">
+  <link rel="stylesheet" href="../../css/jquery.timepicker.css">
+
+  <script src="../../libs/jquery-1.11.1.min.js"></script>
+  <script src="../../libs/jquery-ui.js"></script>
+  <script src="../../libs/angular.js"></script>
+  <script src="../../libs/jquery.timepicker.min.js"></script>
+
+  <script src="datePicker.js"></script>
+  <script src="dateApp.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+<input id="dateField" datepicker ng-model="$parent.currentDate" select="updateMyText(date)">
+<br/>
+{{myText}} - {{currentDate}}
+<hr/>
+<input type="text" ng-model="timeOfDay" time-picker />
+</body>
+</html>
