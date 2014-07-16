@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="ToDo">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>ToDo</title>
+  <link rel="stylesheet" href="../../css/bootstrap.css"/>
+  <script type="text/javascript" src="../../libs/angular.js"></script>
+</head>
+<body>
+<hr/>
+<div class="container" ng-controller="toDoController">
+  <form name="form" ng-submit="add()">
+    <input type="text" ng-model="newTodo" required />
+    <button ng-disabled="form.$invalid">Add</button>
+  </form>
+  <button ng-click="clearFinished()">Clear Finished Tasks</button>
+  <ul>
+      <li ng-repeat="todo in todos">
+        <input type="checkbox" ng-model="todo.completed" />
+        <span>{{todo.title}}</span>
+        <button ng-click="delete($index)">Delete</button>
+      </li>
+  </ul>
+</div>
+<script>
+  angular.module('ToDo', []).
+    controller('toDoController', ['$scope', function ($scope) {
+      $scope.todos = [
+        {title: 'Pet a peach', completed: false},
+        {title: 'Bite a puppy', completed: false}
+      ];
+
+      $scope.add = function (){
+        $scope.todos.push({title: $scope.newTodo, completed: false});
+        $scope.newTodo = '';
+      };
+      $scope.delete = function(index){
+        $scope.todos.splice(index, 1);
+      };
+      $scope.clearFinished = function(){
+        $scope.todos = $scope.todos.filter(function(item){
+          return !item.completed;
+        });
+      };
+    }]);
+
+</script>
+</body>
+</html>
