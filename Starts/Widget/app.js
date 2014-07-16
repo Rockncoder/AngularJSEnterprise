@@ -3,16 +3,11 @@
 var app = angular.module('myApp', []);
 
 app.controller('MainCtrl', ['$scope', function ($scope) {
-  $scope.currentSliderValue = 0;
-  $scope.start = 5;
-  $scope.stop = 20;
 }]);
 
 
 app.directive('rncSliderRange', [function(){
   // one time initialization code here
-  var startTime = new Date();
-
 
   // define the configuration object
   return {
@@ -40,8 +35,7 @@ app.directive('rncSliderRange', [function(){
           max: parseInt($attr.max, 10)
         });
 
-        var temp = $element.slider( "value" );
-        update(temp);
+        update($element.slider( "value" ));
       });
     }
   };
