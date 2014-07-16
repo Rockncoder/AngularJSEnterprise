@@ -12,17 +12,15 @@ app.directive('rncSliderRange', [function(){
   // define the configuration object
   return {
     restrict: 'A',
-    //require: '?ngModel',
     link: function($scope, $element, $attr, ngModel) {
-      var initialized = false,
-        update = function(currentValue){
+      var update = function(currentValue){
           $scope.$apply(function(){
             $scope.currentSliderValue = currentValue;
           });
         };
 
       setTimeout(function(){
-        initialized = $element.slider().
+          $element.slider().
           on('slide', function(event, ui){
             console.log("Current position = " +  ui.value);
             // let Angular know the new slider position
@@ -35,9 +33,33 @@ app.directive('rncSliderRange', [function(){
           max: parseInt($attr.max, 10)
         });
 
+        $scope.$watch('currentSliderValue', function() {
+          $element.slider( "value", $scope.currentSliderValue);
+        });
+
         update($element.slider( "value" ));
       });
     }
   };
 }]);
+
+app.directive('rncAccordion', [function(){
+  return {
+    restrict: 'EA',
+    link: function ($scope, $element, $attr) {
+      setTimeout(function () {
+        $element.accordion({
+          active: false,
+          collapsible: true,
+          activate: function( event, ui ) {
+            $scope.$apply(function(){
+              $scope.currentTitle = ui.newHeader.text();
+            })
+          }
+        });
+      });
+    }
+  }
+}]);
+
 
